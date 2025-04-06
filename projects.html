@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Raghav Verma's projects, including web development, Python applications, and more.">
+    <meta name="keywords" content="Raghav Verma, projects, web development, Python, JavaScript, portfolio">
+    <meta name="author" content="Raghav Verma">
+    <title>Projects - Raghav Verma</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: #4a90e2;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Projects Header */
+        .projects-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .projects-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #4a90e2, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects-header p {
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem 0;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #4a90e2;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(74, 144, 226, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::after {
+            opacity: 1;
+        }
+
+        .project-image i {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image i {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .project-description {
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            background: rgba(74, 144, 226, 0.1);
+            color: #4a90e2;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .primary-link {
+            background: #4a90e2;
+            color: #ffffff;
+        }
+
+        .secondary-link {
+            border: 1px solid #4a90e2;
+            color: #4a90e2;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .primary-link:hover {
+            background: #357abd;
+        }
+
+        .secondary-link:hover {
+            background: rgba(74, 144, 226, 0.1);
+        }
+
+        /* Filter Section */
+        .filter-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-button {
+            background: none;
+            border: 2px solid #4a90e2;
+            color: #4a90e2;
+            padding: 0.8rem 1.8rem;
+            margin: 0 0.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background: #4a90e2;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: 2px solid #4a90e2;
+            border-radius: 25px;
+            background: rgba(26, 26, 26, 0.5);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Project Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            margin: auto;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #ffffff;
+        }
+
+        /* View More Button */
+        .view-more {
+            background: none;
+            border: none;
+            color: #4a90e2;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .view-more:hover {
+            color: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .projects-header {
+                padding: 6rem 0 3rem;
+            }
+
+            .projects-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .filter-button {
+                margin: 0.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <a href="#" class="logo" aria-label="Raghav Verma Portfolio">Raghav Verma</a>
+            <a href="Raghav_Webportfolio.html" class="back-link" aria-label="Back to Portfolio">← Back to Portfolio</a>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Open mobile menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="projects-header">
+            <div class="container">
+                <h1>My Projects</h1>
+                <p>Explore my collection of projects, each showcasing different aspects of my skills and expertise in web development and programming.</p>
+            </div>
+        </section>
+
+        <section class="filter-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search projects..." aria-label="Search projects">
+                </div>
+                <button class="filter-button active" data-filter="all" aria-label="Show all projects">All Projects</button>
+                <button class="filter-button" data-filter="web" aria-label="Show web development projects">Web Development</button>
+                <button class="filter-button" data-filter="python" aria-label="Show Python projects">Python</button>
+                <button class="filter-button" data-filter="javascript" aria-label="Show JavaScript projects">JavaScript</button>
+            </div>
+        </section>
+
+        <section class="projects">
+            <div class="container">
+                <div class="project-grid">
+                    <div class="project-card" data-category="web javascript">
+                        <div class="project-image">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Invoice Generator</h3>
+                            <p class="project-description">A modern web application for creating and managing professional invoices with dynamic form generation and PDF export capabilities. Built with JavaScript, HTML, and CSS.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">Web Development</span>
+                                <span class="project-tag">Frontend</span>
+                                <span class="project-tag">PDF Generation</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Raghaverma/invoice-generator" class="project-link primary-link" target="_blank">View Project</a>
+                                <a href="https://raghaverma.github.io/invoice-generator/" class="project-link secondary-link" target="_blank">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="python">
+                        <div class="project-image">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Medical 3D Viewer</h3>
+                            <p class="project-description">An advanced Python application for 3D medical imaging visualization with volume rendering and interactive data manipulation. Features include slice viewing and 3D reconstruction.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">3D Visualization</span>
+                                <span class="project-tag">Medical Imaging</span>
+                                <span class="project-tag">Data Processing</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Raghaverma/Medical3DViewer" class="project-link primary-link" target="_blank">View Project</a>
+                                <a href="https://github.com/Raghaverma/Medical3DViewer/blob/main/README.md" class="project-link secondary-link" target="_blank">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web javascript">
+                        <div class="project-image">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">College Dashboard</h3>
+                            <p class="project-description">A comprehensive college management system featuring student profiles, course management, and academic tracking. Built with modern web technologies and responsive design.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Web Development</span>
+                                <span class="project-tag">Full Stack</span>
+                                <span class="project-tag">Database</span>
+                                <span class="project-tag">Responsive Design</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Raghaverma/College-Dashboard" class="project-link primary-link" target="_blank">View Project</a>
+                                <a href="https://github.com/Raghaverma/College-Dashboard/blob/main/README.md" class="project-link secondary-link" target="_blank">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web javascript">
+                        <div class="project-image">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">QR Generator</h3>
+                            <p class="project-description">A versatile QR code generator implemented in multiple languages (Java, Python, C, JavaScript). Features include customizable QR codes, error correction, and various output formats.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Multi-language</span>
+                                <span class="project-tag">QR Generation</span>
+                                <span class="project-tag">Java</span>
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">C</span>
+                                <span class="project-tag">JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Raghaverma/QR-Gen" class="project-link primary-link" target="_blank">View Project</a>
+                                <a href="https://github.com/Raghaverma/QR-Gen/blob/main/README.md" class="project-link secondary-link" target="_blank">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web javascript">
+                        <div class="project-image">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Netflix UI Clone</h3>
+                            <p class="project-description">A React-based Netflix UI clone with movie data fetching from TMDB API, trailer pop-ups, and responsive design. Built with React, Material-UI, and Firebase for hosting.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">Firebase</span>
+                                <span class="project-tag">TMDB API</span>
+                                <span class="project-tag">Material-UI</span>
+                                <span class="project-tag">Responsive Design</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Raghaverma/Netflix-UI-clone" class="project-link primary-link" target="_blank">View Project</a>
+                                <a href="https://github.com/Raghaverma/Netflix-UI-clone/blob/main/README.md" class="project-link secondary-link" target="_blank">Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="scroll-to-top" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+
+        <div class="modal" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close-modal" aria-label="Close modal">&times;</span>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const projectCards = document.querySelectorAll('.project-card');
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            projectCards.forEach(card => {
+                const title = card.querySelector('.project-title').textContent.toLowerCase();
+                const description = card.querySelector('.project-description').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.project-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                if (title.includes(searchTerm) || 
+                    description.includes(searchTerm) || 
+                    tags.some(tag => tag.includes(searchTerm))) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollToTop = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+        });
+
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Modal functionality
+        const modal = document.querySelector('.modal');
+        const closeModal = document.querySelector('.close-modal');
+        const modalBody = document.querySelector('.modal-body');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.project-title').textContent;
+                const description = card.querySelector('.project-description').textContent;
+                const tags = Array.from(card.querySelectorAll('.project-tag')).map(tag => tag.textContent);
+                const links = Array.from(card.querySelectorAll('.project-link')).map(link => ({
+                    href: link.href,
+                    text: link.textContent,
+                    isPrimary: link.classList.contains('primary-link')
+                }));
+
+                modalBody.innerHTML = `
+                    <h2>${title}</h2>
+                    <p>${description}</p>
+                    <div class="project-tags">
+                        ${tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        ${links.map(link => `
+                            <a href="${link.href}" class="project-link ${link.isPrimary ? 'primary-link' : 'secondary-link'}" target="_blank">
+                                ${link.text}
+                            </a>
+                        `).join('')}
+                    </div>
+                `;
+
+                modal.classList.add('active');
+                modal.setAttribute('aria-hidden', 'false');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // View more functionality
+        const projectDescriptions = document.querySelectorAll('.project-description');
+        projectDescriptions.forEach(desc => {
+            const text = desc.textContent;
+            if (text.length > 150) {
+                desc.textContent = text.slice(0, 150) + '...';
+                const viewMoreBtn = document.createElement('button');
+                viewMoreBtn.className = 'view-more';
+                viewMoreBtn.textContent = 'View More';
+                desc.parentNode.insertBefore(viewMoreBtn, desc.nextSibling);
+
+                viewMoreBtn.addEventListener('click', () => {
+                    desc.textContent = text;
+                    viewMoreBtn.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
