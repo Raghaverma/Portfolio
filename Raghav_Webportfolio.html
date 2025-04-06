@@ -3,9 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <title>Raghav Verma</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+
+                /* Custom Cursor */
+                .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4a90e2;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            left: 0;
+            top: 0;
+            backdrop-filter: blur(1px);
+        }
+
+        .custom-cursor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background-color: #4a90e2;
+            border-radius: 50%;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .custom-cursor.cursor-hover {
+            width: 40px;
+            height: 40px;
+            border-color: #ffffff;
+            background-color: rgba(74, 144, 226, 0.2);
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .custom-cursor.cursor-hover::before {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: #ffffff;
+        }
+
+        .custom-cursor.cursor-click {
+            transform: translate(-50%, -50%) scale(0.8);
+            background-color: rgba(74, 144, 226, 0.3);
+        }
+
+        .cursor-trail {
+            width: 6px;
+            height: 6px;
+            background-color: #4a90e2;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.6;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            left: 0;
+            top: 0;
+            backdrop-filter: blur(1px);
+        }
+
+        .cursor-trail.hide {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,6 +88,7 @@
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
+            cursor: none;
         }
 
         .container {
@@ -40,6 +111,7 @@
             align-items: center;
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
         }
 
         .logo {
@@ -457,15 +529,94 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Light mode styles */
+        body.light-mode {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        body.light-mode .nav {
+            background: rgba(245, 245, 245, 0.8);
+        }
+
+        body.light-mode .logo,
+        body.light-mode .nav-links a,
+        body.light-mode .mobile-menu-btn {
+            color: #333;
+        }
+
+        body.light-mode .project-card {
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .project-description {
+            color: #666;
+        }
+
+        body.light-mode .skill-item {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        body.light-mode .contact {
+            background: #e0e0e0;
+        }
+
+        body.light-mode .custom-cursor {
+            border-color: #333;
+        }
+
+        body.light-mode .custom-cursor::before {
+            background-color: #333;
+        }
+
+        body.light-mode .custom-cursor.cursor-hover {
+            border-color: #4a90e2;
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        body.light-mode .custom-cursor.cursor-hover::before {
+            background-color: #4a90e2;
+        }
+
+        body.light-mode .cursor-trail {
+            background-color: #333;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            margin-left: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        body.light-mode .theme-toggle {
+            color: #333;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
     </style>
 </head>
 <body>
+    <div class="custom-cursor"></div>
     <nav class="nav">
         <a href="#" class="logo">Raghav Verma</a>
         <div class="nav-links">
             <a href="#work">Work</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
         <button class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
@@ -501,22 +652,22 @@
                 <div class="project-card">
                     <div class="project-info">
                         <h3 class="project-title">Invoice Generator</h3>
-                        <p class="project-description">A JavaScript-based invoice generator application for creating professional invoices.</p>
+                        <p class="project-description">A modern web application built with JavaScript for creating and managing professional invoices. Features include dynamic form generation, PDF export, and responsive design.</p>
                         <a href="https://github.com/Raghaverma/invoice-generator" class="cta-button">View Project</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-info">
                         <h3 class="project-title">Medical 3D Viewer</h3>
-                        <p class="project-description">A Python project for 3D object manipulation and medical imaging visualization.</p>
+                        <p class="project-description">An advanced Python application for 3D medical imaging visualization. Implements volume rendering, slice viewing, and interactive manipulation of medical data.</p>
                         <a href="https://github.com/Raghaverma/Medical3DViewer" class="cta-button">View Project</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-info">
-                        <h3 class="project-title">Netflix UI Clone</h3>
-                        <p class="project-description">A JavaScript implementation of Netflix's user interface.</p>
-                        <a href="https://github.com/Raghaverma/Netflix-UI-clone" class="cta-button">View Project</a>
+                        <h3 class="project-title">College Dashboard</h3>
+                        <p class="project-description">A comprehensive college management system featuring student profiles, course management, and academic tracking. Built with modern web technologies and responsive design.</p>
+                        <a href="https://github.com/Raghaverma/College-Dashboard" class="cta-button">View Project</a>
                     </div>
                 </div>
             </div>
@@ -527,14 +678,16 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <p>I'm a Master's Student based in New Delhi, India, specializing in Frontend development with Backend capabilities. I create intuitive, responsive web interfaces that combine elegant design with solid functionality. My academic foundation and project experience have honed my skills in modern web technologies and user-centered design. I'm dedicated to building digital experiences that are both visually striking and thoughtfully engineered.</p>
+                <p>I'm a passionate Computer Science student and web developer based in New Delhi, India. With a strong foundation in both frontend and backend development, I specialize in creating modern, responsive web applications. My expertise spans across various technologies including JavaScript, Python, and modern web frameworks. I'm particularly interested in UI/UX design and creating intuitive user experiences. Through my academic projects and personal work, I've developed a keen eye for detail and a commitment to writing clean, maintainable code.</p>
                 <div class="skills">
-                    <span class="skill-item">Frontend Development</span>
-                    <span class="skill-item">Backend Development</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">HTML/CSS</span>
+                    <span class="skill-item">Web Development</span>
                     <span class="skill-item">UI/UX Design</span>
                     <span class="skill-item">Responsive Design</span>
-                    <span class="skill-item">Web Technologies</span>
-                    <span class="skill-item">User-Centered Design</span>
+                    <span class="skill-item">3D Visualization</span>
+                    <span class="skill-item">Problem Solving</span>
                 </div>
             </div>
         </div>
@@ -551,6 +704,128 @@
     </section>
 
     <script>
+        // Custom cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const trails = [];
+        const trailCount = 6; // Reduced number of trails for smoother effect
+        
+        // Create trail elements
+        for (let i = 0; i < trailCount; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            document.body.appendChild(trail);
+            trails.push({
+                element: trail,
+                x: 0,
+                y: 0,
+                delay: i * 0.05
+            });
+        }
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        let isHovering = false;
+        let isClicking = false;
+
+        // Magnetic effect for interactive elements
+        function getMagneticOffset(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const distance = Math.sqrt(
+                Math.pow(mouseX - centerX, 2) + 
+                Math.pow(mouseY - centerY, 2)
+            );
+            
+            if (distance < 100) {
+                const strength = (1 - distance / 100) * 15; // Reduced strength for subtler effect
+                return {
+                    x: (centerX - mouseX) * strength / distance,
+                    y: (centerY - mouseY) * strength / distance
+                };
+            }
+            return { x: 0, y: 0 };
+        }
+
+        // Smooth cursor movement with magnetic effect
+        function updateCursor() {
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            
+            let offsetX = 0;
+            let offsetY = 0;
+
+            if (isHovering) {
+                const hoveredElement = document.elementFromPoint(mouseX, mouseY);
+                if (hoveredElement) {
+                    const offset = getMagneticOffset(hoveredElement);
+                    offsetX = offset.x;
+                    offsetY = offset.y;
+                }
+            }
+            
+            cursorX += (dx + offsetX) * 0.15; // Increased speed for more responsive feel
+            cursorY += (dy + offsetY) * 0.15;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            // Update trails with easing
+            trails.forEach((trail, index) => {
+                const delay = trail.delay;
+                trail.x += (cursorX - trail.x) * (0.15 + delay);
+                trail.y += (cursorY - trail.y) * (0.15 + delay);
+                trail.element.style.left = trail.x + 'px';
+                trail.element.style.top = trail.y + 'px';
+                
+                // Hide trails when cursor is moving fast
+                const speed = Math.sqrt(dx * dx + dy * dy);
+                if (speed > 30) { // Reduced threshold for smoother effect
+                    trail.element.classList.add('hide');
+                } else {
+                    trail.element.classList.remove('hide');
+                }
+            });
+            
+            requestAnimationFrame(updateCursor);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Click animation
+        document.addEventListener('mousedown', () => {
+            isClicking = true;
+            cursor.classList.add('cursor-click');
+        });
+
+        document.addEventListener('mouseup', () => {
+            isClicking = false;
+            cursor.classList.remove('cursor-click');
+        });
+
+        // Start cursor animation
+        updateCursor();
+
+        // Add hover effect for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-item, .filter-button');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                isHovering = true;
+                cursor.classList.add('cursor-hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                isHovering = false;
+                cursor.classList.remove('cursor-hover');
+            });
+        });
+
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
@@ -579,6 +854,149 @@
                 }
             });
         });
+
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLightMode = document.body.classList.contains('light-mode');
+            
+            // Update icon
+            if (isLightMode) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Project filtering system
+        const projects = [
+            {
+                title: "Invoice Generator",
+                description: "A modern web application built with JavaScript for creating and managing professional invoices. Features include dynamic form generation, PDF export, and responsive design.",
+                link: "https://github.com/Raghaverma/invoice-generator",
+                tags: ["JavaScript", "Web Development", "Frontend"]
+            },
+            {
+                title: "Medical 3D Viewer",
+                description: "An advanced Python application for 3D medical imaging visualization. Implements volume rendering, slice viewing, and interactive manipulation of medical data.",
+                link: "https://github.com/Raghaverma/Medical3DViewer",
+                tags: ["Python", "3D Visualization", "Medical"]
+            },
+            {
+                title: "College Dashboard",
+                description: "A comprehensive college management system featuring student profiles, course management, and academic tracking. Built with modern web technologies and responsive design.",
+                link: "https://github.com/Raghaverma/College-Dashboard",
+                tags: ["Web Development", "Full Stack", "Database"]
+            }
+        ];
+
+        // Create filter buttons
+        const uniqueTags = [...new Set(projects.flatMap(project => project.tags))];
+        const filterContainer = document.createElement('div');
+        filterContainer.className = 'filter-container';
+        filterContainer.style.textAlign = 'center';
+        filterContainer.style.marginBottom = '2rem';
+
+        const allButton = document.createElement('button');
+        allButton.className = 'filter-button active';
+        allButton.textContent = 'All';
+        allButton.onclick = () => filterProjects('all');
+        filterContainer.appendChild(allButton);
+
+        uniqueTags.forEach(tag => {
+            const button = document.createElement('button');
+            button.className = 'filter-button';
+            button.textContent = tag;
+            button.onclick = () => filterProjects(tag);
+            filterContainer.appendChild(button);
+        });
+
+        // Add filter styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .filter-container {
+                margin: 2rem 0;
+            }
+            .filter-button {
+                background: none;
+                border: 1px solid #4a90e2;
+                color: #4a90e2;
+                padding: 0.5rem 1rem;
+                margin: 0 0.5rem;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .filter-button:hover {
+                background: #4a90e2;
+                color: #ffffff;
+            }
+            .filter-button.active {
+                background: #4a90e2;
+                color: #ffffff;
+            }
+            body.light-mode .filter-button {
+                border-color: #333;
+                color: #333;
+            }
+            body.light-mode .filter-button:hover,
+            body.light-mode .filter-button.active {
+                background: #333;
+                color: #ffffff;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Insert filter container before project grid
+        const projectSection = document.querySelector('.projects .container');
+        const projectGrid = document.querySelector('.project-grid');
+        projectSection.insertBefore(filterContainer, projectGrid);
+
+        function filterProjects(tag) {
+            // Update active button
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.classList.remove('active');
+                if (button.textContent === tag || (tag === 'all' && button.textContent === 'All')) {
+                    button.classList.add('active');
+                }
+            });
+
+            // Filter and update projects
+            const filteredProjects = tag === 'all' 
+                ? projects 
+                : projects.filter(project => project.tags.includes(tag));
+
+            const projectGrid = document.querySelector('.project-grid');
+            projectGrid.innerHTML = '';
+
+            filteredProjects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.innerHTML = `
+                    <div class="project-info">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <a href="${project.link}" class="cta-button">View Project</a>
+                    </div>
+                `;
+                projectGrid.appendChild(projectCard);
+            });
+        }
+
+        // Initialize projects
+        filterProjects('all');
     </script>
 </body>
 </html> 
