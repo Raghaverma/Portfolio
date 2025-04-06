@@ -456,6 +456,7 @@
                 <button class="filter-button" data-filter="web" aria-label="Show web development projects">Web Development</button>
                 <button class="filter-button" data-filter="python" aria-label="Show Python projects">Python</button>
                 <button class="filter-button" data-filter="javascript" aria-label="Show JavaScript projects">JavaScript</button>
+                <button class="filter-button" data-filter="react" aria-label="Show React projects">React</button>
             </div>
         </section>
 
@@ -564,6 +565,26 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="project-card" data-category="web javascript react">
+                        <div class="project-image">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Expense Tracker</h3>
+                            <p class="project-description">A comprehensive expense tracking application built with React. Track your income and expenses, categorize transactions, and visualize your spending habits with interactive charts and reports.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">Financial Management</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/Raghaverma/expense-tracker" class="project-link primary-link" target="_blank">View Project</a>
+                                <a href="https://github.com/Raghaverma/expense-tracker/blob/main/README.md" class="project-link secondary-link" target="_blank">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -582,6 +603,47 @@
 
     <script>
         const projectCards = document.querySelectorAll('.project-card');
+        const filterButtons = document.querySelectorAll('.filter-button');
+
+        // Filter functionality
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Initial animation for project cards
+        projectCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
 
         // Search functionality
         const searchInput = document.querySelector('.search-input');
